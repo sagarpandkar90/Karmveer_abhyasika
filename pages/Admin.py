@@ -74,9 +74,12 @@ def get_student_deposit(student_id) -> pd.DataFrame:
 
 def save_fee_payment(student_id, student_name, month, year,
                      amount_paid, payment_type, remarks="") -> bool:
-    """Save fee payment record to Google Sheets."""
     try:
+        st.write("DEBUG: Start saving fee")   # 👈
+
         new_id = gs.next_id(gs.SHEET_FEE_PAYMENTS)
+        st.write("DEBUG new_id:", new_id)    # 👈
+
         row = [
             new_id,
             student_id,
@@ -90,13 +93,17 @@ def save_fee_payment(student_id, student_name, month, year,
             "Admin",
             datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         ]
+
+        st.write("DEBUG row:", row)          # 👈
+
         gs.append_row(gs.SHEET_FEE_PAYMENTS, row)
+
+        st.success("✅ Row added to sheet")  # 👈
         return True
+
     except Exception as e:
-        st.error(f"Error saving payment: {e}")
+        st.error(f"❌ Error saving payment: {e}")
         return False
-
-
 def get_fee_report(month=None, year=None) -> pd.DataFrame:
     """Get fee payment report from Google Sheets."""
     try:
