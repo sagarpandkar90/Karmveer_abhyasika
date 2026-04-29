@@ -63,7 +63,7 @@ def get_gspread_client():
     """Return an authenticated gspread client."""
     try:
         # --- Streamlit secrets (preferred) ---
-        creds_dict = dict(st.secrets["gcp_service_account"])
+        creds_dict = st.secrets["gcp_service_account"]
         creds = Credentials.from_service_account_info(creds_dict, scopes=SCOPES)
     except (KeyError, FileNotFoundError):
         # --- Fallback: local credentials.json ---
