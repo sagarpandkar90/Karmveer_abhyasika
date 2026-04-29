@@ -1,0 +1,37 @@
+# 🔐 Secrets (VERY IMPORTANT)
+.streamlit/secrets.toml
+credentials.json
+
+# 🐍 Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 📦 Virtual Environment
+venv/
+env/
+.venv/
+
+# 📊 Data files (optional - if you don’t want to upload)
+*.db
+*.sqlite3
+*.xlsx
+*.csv
+
+# 📝 Logs
+*.log
+
+# 🧪 Jupyter Notebook
+.ipynb_checkpoints/
+
+# 💻 OS files
+.DS_Store
+Thumbs.db
+
+# 🧰 IDE files
+.vscode/
+.idea/
+
+# 🚀 Streamlit cache
+.streamlit/cache/
