@@ -473,7 +473,7 @@ def login_page():
                     st.rerun()
                 else:
                     st.error("❌ Incorrect Password!")
-        st.caption("💡 Set password via Streamlit Secrets or ADMIN_PASSWORD env var.")
+      
 
 
 # ══════════════════════════════════════════════════════════════════════════════
