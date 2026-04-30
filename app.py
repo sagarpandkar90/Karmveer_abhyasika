@@ -290,36 +290,83 @@ st.markdown(
 with st.spinner("विद्यार्थी लोड होत आहेत…"):
     students = get_brave_students_cached()
 
-if not students:
-    st.info("⚠️ गॅलरीमध्ये अद्याप विद्यार्थी नाहीत. Admin panel मधून जोडा.")
-else:
-    cards_html = "<div class='students-wrap'>"
-    for s in students:
-        photo_path = s["photo"]
-        # Try local file first, else treat as URL
-        if os.path.exists(photo_path):
-            try:
-                b64 = get_base64(photo_path)
-                photo_src = f"data:image/jpeg;base64,{b64}"
-            except Exception:
-                photo_src = photo_path
-        else:
-            photo_src = photo_path
+if students:
+    BARS = ['378ADD', '1D9E75', '7F77DD', 'BA7517', 'D4537E', '639922', 'D85A30', '4ABFBF']
 
-        name     = s["name"].replace("'", "&#39;")
-        position = s["position"].replace("'", "&#39;")
-        cards_html += f"""
-        <div class='student-card'>
-            <img src='{photo_src}' alt='{name}' loading='lazy'
-                 onerror="this.src='https://ui-avatars.com/api/?name={name}&background=00796b&color=fff&size=150'">
-            <div class='student-name'>{name}</div>
-            <div class='student-position'>{position}</div>
-        </div>"""
-    cards_html += "</div>"
-    st.markdown(cards_html, unsafe_allow_html=True)
+    import streamlit as st
 
+    html = """
+    <style>
+    .sv-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 14px;
+        margin: 20px 0 40px;
+    }
+
+    .sv-card {
+        background: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 16px;
+        padding: 18px 12px 16px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .sv-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+    }
+
+    .sv-name {
+        font-size: 17px;
+        font-weight: 800;
+        color: #1a237e;
+        margin-top: 12px;
+    }
+
+    .sv-post {
+        font-size: 13px;
+        font-weight: 600;
+        margin-top: 6px;
+        color: #ffffff;
+        background: #ff6f00;
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 10px;
+    }
+    </style>
+
+    <div class='sv-grid'>
+
+    <div class='sv-card'>
+        <div class='sv-bar' style='background:#378ADD;'></div>
+        <div class='sv-name'>Yogesh Kshirsagar</div>
+        <div class='sv-post'>WRD Measurer</div>
+    </div>
+
+    <div class='sv-card'>
+        <div class='sv-bar' style='background:#1D9E75;'></div>
+        <div class='sv-name'>Dinesh Dhaigude</div>
+        <div class='sv-post'>Agriculture Officer</div>
+    </div>
+
+    <div class='sv-card'>
+        <div class='sv-bar' style='background:#7F77DD;'></div>
+        <div class='sv-name'>Pratik Jadhav</div>
+        <div class='sv-post'>Food Safety Officer</div>
+    </div>
+
+    </div>
+    """
+
+    st.markdown(html, unsafe_allow_html=True)
 # ── Footer ─────────────────────────────────────────────────────────────────────
 st.markdown(
-    "<div class='kv-footer'>© 2025 कर्मवीर अभ्यासिका | Designed with ❤️ in Streamlit</div>",
+    "<div class='kv-footer'>© 2026 कर्मवीर अभ्यासिका | Designed with ❤️ in Streamlit</div>",
     unsafe_allow_html=True
 )
