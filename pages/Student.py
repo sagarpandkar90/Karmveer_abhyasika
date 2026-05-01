@@ -90,7 +90,7 @@ def general_form():
 </div>
 """
 
-    components.html(html_code, scrolling=False, height=1400)  # increased height
+    components.html(html_code, scrolling=False, height=1600)  # increased height
 
 
 
